@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/register.css">
+</head>
+
+<body>
+
+    <form action="/sign" method="post" class="header">
+
+
+        <div class="container">
+
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+            </br>
+            </br>
+            <label for="uname"><b>Email Id</b></label>
+            <input type="email" placeholder="Enter Email Id" name="email" required>
+            </br>
+            </br>
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" id="psw" pattern=".{5,}" title="Password must be at least 5 characters" required>
+            </br>
+            </br>
+            <label for="confirm"><b>Confirm Password</b></label>
+            <input type="password" placeholder="Confirm Password" name="confirm" id="confirm" title="Password should be same as above" required>
+            </br>
+            </br>
+            <div class=btn-container>
+                <button type="submit" onsubmit="return validatePassword()">Sign Up</button>
+                </br>
+                <label>
+                        <input type="checkbox" checked="checked" name="remember"> Remember me
+                    </label>
+            </div>
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+            <button type="button" class="cancelbtn">Cancel</button>
+            <span class="psw">Already has an account?</br> <a href="/login">Log in</a></span>
+        </div>
+
+    </form>
+
+</body>
+
+</html>
