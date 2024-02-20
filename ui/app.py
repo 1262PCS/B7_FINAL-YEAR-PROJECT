@@ -1,6 +1,7 @@
+import re
 from flask import Flask, render_template, request, redirect, url_for
-from function import validate_user
 from db import create_table, add_user, authenticate_user
+
 
 app = Flask(__name__)
 
@@ -14,10 +15,10 @@ def first():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+        email = request.form['email']
+        password = request.form['psw']
         # Check if username and password match in the database
-        if authenticate_user(username, password): 
+        if authenticate_user(email, password): 
                 # Redirect to home page upon successful login
             return redirect(url_for('home'))
         # If credentials don't match, show login page again
@@ -27,16 +28,32 @@ def login():
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        # Check if username already exists
-        if not authenticate_user(username, password):
-            # If username is unique, add the user to the database
-            add_user(username, password)
+        username = request.form['uname']
+        email = request.form['email']
+        password = request.form['psw']
+        confirm_password = request.form['confirm']
+
+        # Check if passwords match
+        if password != confirm_password:
+            return render_template('signup.html', message='Passwords do not match')
+
+        try:
+            # Attempt to add the user to the database
+            add_user(username, email, password)
             # Redirect to login page after successful signup
             return redirect(url_for('login'))
-        return render_template('signup.html', message='Username already exists')
+        except ValueError as e:
+            # Handle the ValueError raised by add_user
+            return render_template('signup.html', message=str(e))
+
     return render_template('signup.html')
+
+
+@app.route('/home')
+def home():
+    return render_template('home.html')
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

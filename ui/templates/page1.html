@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Journals & Publications</title>
     <!-- <link rel="stylesheet" href="../css/page.css"> -->
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/page.css') }}">
+    <link rel="stylesheet" type="text/css" href="../static/css/page.css">
 
 
 </head>
@@ -26,8 +26,14 @@
         </div>
         <div class="main" id="sec2">
             <div class="header2">
-                <button onclick="redirectToLogin()">Sign Up</button>
-                <script src="{{ url_for('static', filename='js/redirect.js') }}"></script>
+                <button onclick="redirectToregister()">Sign Up</button>
+                <script>
+                    // Define the redirectToLogin function
+                    function redirectToregister() {
+                        // Redirect to the signup page
+                        window.location.href = "signup";
+                    }
+                </script>
             </div>
         </div>
 </body>
