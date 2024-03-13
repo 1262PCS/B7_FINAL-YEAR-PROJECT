@@ -1,5 +1,5 @@
 import re
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 from db import create_table, add_user, authenticate_user
 
 
@@ -45,7 +45,20 @@ def signup():
 
 @app.route('/home')
 def home():
+    
     return render_template('home.html')
+
+
+
+@app.route('/view')
+def view():
+    return render_template('view.html')
+
+@app.route('/page1')
+def page():
+    return render_template('page1.html')
+
+
 
 
 

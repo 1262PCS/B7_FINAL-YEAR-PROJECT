@@ -1,4 +1,5 @@
 .navbar {
+    position:  fixed;
     background-color: #2B1C1F;
     margin-bottom: 50px;
     border-radius: 0;
@@ -42,16 +43,17 @@
 
 .search-bar {
     position: fixed;
+    width:100%;
     top: 50px;
     right: 0;
-    background-color: #d79063;
+    background-color: #613517;
     color: white;
     padding: 5px;
     text-align: center;
 }
 
 .search-bar input[type="text"] {
-    width: 200px;
+    width: 75%;
     padding: 10px;
     color: #2B1C1F;
 }

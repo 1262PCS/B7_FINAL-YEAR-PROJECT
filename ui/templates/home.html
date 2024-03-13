@@ -10,10 +10,26 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <!-- <link rel="stylesheet" href="../css/home.css"> -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
+    <!-- to use pyscript -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script defer src="https://pyscript.net/releases/2022.12.1/pyscript.js"></script>
 
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script>
+        // Function to handle node clicks
+        function handleNodeClick(nodeId) {
+            alert('Clicked node ID: ' + nodeId);
+            // You can perform further actions here based on the clicked node
+        }
+    </script>
 </head>
 
 <body>
+
+    <div class="search-bar">
+        <input type="text" placeholder="Search">
+        <button type="button">Search</button>
+    </div>
 
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
@@ -50,12 +66,12 @@
         </div>
     </nav>
 
-    <img src="{{ url_for('static', filename='images/newplot.png') }}">
-
-    <div class="search-bar">
-        <input type="text" placeholder="Search">
-        <button type="button">Search</button>
+    <div id="plotly_div">
+        <!-- Embed your Plotly visualization here -->
+        <!-- Load the saved HTML file here -->
+        <iframe src="../static/network_visualization.html" width="100%" height="900" frameborder="0"></iframe>
     </div>
+
 </body>
 
 </html>
