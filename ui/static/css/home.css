@@ -69,3 +69,24 @@
 img {
     width: 100%;
 }
+
+/* sidebar */
+/* Define grid container */
+.body-division{
+    display: grid;
+    grid-template-columns: 70% 30%; /* 70% for left, 30% for right */
+    grid-gap: 20px; /* Adjust gap as needed */
+}
+
+/* Style left content */
+.left-content {
+    /* Styles for left part */
+    max-width: auto;
+}
+
+/* Style right content */
+.right-content {
+    max-width:auto;
+    color: bisque;
+    /* Styles for right part */
+}
