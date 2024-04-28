@@ -1,6 +1,11 @@
 import re
+#pip install flask
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from db import create_table, add_user, authenticate_user
+from search import load_papers, search_papers  # Import functions
+
+# Load papers data on application startup (assuming 'all_papers.csv' is in the same directory)
+papers = load_papers('all_papers.csv')  # Modify path if needed
 
 
 app = Flask(__name__)
@@ -23,6 +28,7 @@ def login():
         return render_template('login.html', message='Invalid username or password')
     return render_template('login.html')
 
+
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
@@ -43,11 +49,34 @@ def signup():
     return render_template('signup.html')
 
 
+# @app.route('/home', methods=['GET', 'POST'])
+# def home():
+#     if request.method == 'POST':
+#         keyword = request.form['keyword']
+#         matching_papers = search_papers(keyword, papers)
+#         return render_template('home.html', papers=matching_papers, keyword=keyword)
+#     return render_template('home.html')
+
 @app.route('/home')
 def home():
-    
     return render_template('home.html')
 
+@app.route('/search', methods=['POST'])
+def search():
+    keyword = request.json['keyword'].lower()  # Get search keyword
+    matching_papers = search_papers(keyword, papers)
+    return jsonify(matching_papers)
+
+# @app.route('/search')
+# def search():
+#     if request.method == 'POST':
+#         keyword = request.form['keyword']
+#         search_results = search_papers(keyword, papers)  # Search using loaded data
+#     else:
+#         keyword = ""
+#         search_results = None
+
+#     return render_template('home.html', keyword=keyword, search_results=search_results)
 
 
 @app.route('/view')
@@ -64,3 +93,8 @@ def page():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+
+
+
