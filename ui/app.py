@@ -1,16 +1,13 @@
 import re
-#pip install flask
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask import Flask, jsonify, render_template, request, redirect, url_for
 from db import create_table, add_user, authenticate_user
-from search import load_papers, search_papers  # Import functions
-
-# Load papers data on application startup (assuming 'all_papers.csv' is in the same directory)
-papers = load_papers('all_papers.csv')  # Modify path if needed
+from search import search_papers,display_results
 
 
 app = Flask(__name__)
 
 create_table()
+
 
 @app.route('/')
 def first():
@@ -23,7 +20,7 @@ def login():
         password = request.form['psw']
         
         if authenticate_user(email, password): 
-            return redirect(url_for('home'))
+            return redirect(url_for('search'))
         
         return render_template('login.html', message='Invalid username or password')
     return render_template('login.html')
@@ -49,34 +46,18 @@ def signup():
     return render_template('signup.html')
 
 
-# @app.route('/home', methods=['GET', 'POST'])
-# def home():
-#     if request.method == 'POST':
-#         keyword = request.form['keyword']
-#         matching_papers = search_papers(keyword, papers)
-#         return render_template('home.html', papers=matching_papers, keyword=keyword)
-#     return render_template('home.html')
 
-@app.route('/home')
-def home():
-    return render_template('home.html')
-
-@app.route('/search', methods=['POST'])
+@app.route('/search',methods=['GET','POST'])
 def search():
-    keyword = request.json['keyword'].lower()  # Get search keyword
-    matching_papers = search_papers(keyword, papers)
-    return jsonify(matching_papers)
+    if request.method == "POST":
+        userInput = request.form.get('search')
+        print('Received userInput:', userInput) 
+        search_result=search_papers(userInput)
+        results= display_results(search_result)
+        return jsonify({'result': results})
+    return render_template('search.html')
 
-# @app.route('/search')
-# def search():
-#     if request.method == 'POST':
-#         keyword = request.form['keyword']
-#         search_results = search_papers(keyword, papers)  # Search using loaded data
-#     else:
-#         keyword = ""
-#         search_results = None
 
-#     return render_template('home.html', keyword=keyword, search_results=search_results)
 
 
 @app.route('/view')
@@ -86,6 +67,10 @@ def view():
 @app.route('/page1')
 def page():
     return render_template('page1.html')
+
+@app.route('/result')
+def result():
+    return render_template('result.html')
 
 
 

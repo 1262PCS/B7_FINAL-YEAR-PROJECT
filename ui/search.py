@@ -1,45 +1,94 @@
-import csv
+import pandas as pd
 
-def load_papers(filename):
-    """Loads paper data from a CSV file into a list of dictionaries.
 
-    Args:
-        filename: The path to the CSV file.
 
-    Returns:
-        A list of dictionaries, where each dictionary represents a paper with
-        keys corresponding to the CSV column headers (e.g., "category", "title").
-    """
-    papers = []
-    with open(filename, 'r', encoding='utf-8') as csvfile:
-        reader = csv.DictReader(csvfile)
-        for row in reader:
-            papers.append(row)
-    return papers
+# Specify the path to your CSV file
+file_path = "nc_data.csv"
 
-def search_papers(keyword, papers):
-    """Searches for papers containing the given keyword in category or title.
+# Read the CSV file into a DataFrame
+df = pd.read_csv(file_path)
 
-    Args:
-        keyword: The keyword to search for (case-insensitive).
-        papers: A list of dictionaries representing papers.
+def search_papers(keyword):
+  """
+  This function searches for papers based on a provided keyword in the all_papers_df DataFrame.
 
-    Returns:
-        A list of dictionaries matching the search criteria.
-    """
-    keyword = keyword.lower()  # Make search case-insensitive
-    matching_papers = []
-    for paper in papers:
-        if 'category' in paper and keyword in paper['category'].lower():
-            matching_papers.append(paper)
-        elif 'title' in paper and keyword in paper['title'].lower():
-            matching_papers.append(paper)
-    return matching_papers
+  Args:
+      keyword: The keyword to search for (lowercase).
 
-# Example usage:
-filename = "all_papers.csv"
-papers_data = load_papers(filename)
-keyword = "machine learning"
-matching_papers = search_papers(keyword, papers_data)
-for paper in matching_papers:
-    print(paper)
+  Returns:
+      A DataFrame containing matching papers.
+  """
+
+  
+  keyword = keyword.lower()  # Convert keyword to lowercase for case-insensitive search
+  matching_papers = df[df['Paper Title'].str.lower().str.contains(keyword)] 
+#   matching_papers = df[df['Paper Title'].str.contains(keyword)]
+  return matching_papers
+
+def display_results(matching_papers):
+  """
+  This function displays the search results with paper titles and other relevant information.
+
+  Args:
+      matching_papers: A DataFrame containing matching papers.
+  """
+
+  if matching_papers.empty:
+    return("No results found.")
+
+
+#   num_papers = len(matching_papers)
+# #   print(f"\nSearch Results for '{keyword}' ({num_papers} papers):\n")
+  
+  # Access paper titles and potentially other columns you want to display
+  paper_titles = matching_papers['Paper Title'].tolist()
+  list=[]
+  for title in paper_titles:
+      el=title
+      if el in list:
+        continue
+      else:
+        list.append(el)
+  # if len(list)<5:
+    # for i in list:
+      # print(i)
+    
+  # else:
+  list=list[:5]
+    # for i in list:
+      # print(i)
+  return list
+    
+
+  # print(list) 
+
+# [
+#         {'Paper Title': 'Title 1', 'Author': 'Author 1', 'Year': 2023},
+#         {'Paper Title': 'Title 2', 'Author': 'Author 2', 'Year': 2022},
+#         # ... more results
+#     ]
+
+# def display_results(matching_papers):
+#   """
+#   This function displays the search results with paper titles and other relevant information.
+
+#   Args:
+#       matching_papers: A DataFrame containing matching papers.
+#   """
+
+#   if matching_papers.empty:
+#     return("No results found.")
+
+#   # Access paper titles and potentially other columns you want to display
+#   paper_titles = matching_papers['Paper Title'].tolist()
+#   results_html = "<ul>"
+#   for title in paper_titles:
+#       results_html += f"<li>{title}</li>"
+#   results_html += "</ul>"
+#   return results_html
+
+# # Example usage
+# keyword = input("Enter your search keyword: ")
+# matching_papers = search_papers(keyword)
+# display_results(matching_papers)
+

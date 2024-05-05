@@ -60,10 +60,3 @@ def authenticate_user(email, password):
 
     return user is not None
 
-
-# create_table()
-
-# add_user('user1', 'password123')
-
-# authenticated = authenticate_user('user1', 'password123')
-# print("User authenticated:", authenticated)
