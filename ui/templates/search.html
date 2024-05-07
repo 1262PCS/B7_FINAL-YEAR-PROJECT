@@ -16,9 +16,11 @@
             display: none; /* Hide the element */
         }
        .search-results {
-            margin-top: 30%;
+            padding-right: 10px;
+            margin-top: 40%;
             max-height: 800px; /*Increase the maximum height of the container */
-            overflow-y: auto; /* Add scrollbar when content exceeds the height */
+            overflow-y: auto;
+            text-align: left; /* Add scrollbar when content exceeds the height */
         }
     </style>
 </head>
@@ -69,7 +71,7 @@
             <div class="search-results" type="text">
                 <ul>
                     {% for item in result %}
-                    <li>{{ item }}</li>
+                    <li><a style="cursor: pointer;" onclick="ToView()">{{ item }}</a></li>
                     {% endfor %}
                 </ul>
             </div>
@@ -98,6 +100,9 @@
     // if (searchResults.children.length > 0) {
     //     searchForm.classList.add("hidden");
     // }
+    function ToView(){
+        window.location.href="/view";
+    }
 </script>
 
 </body>

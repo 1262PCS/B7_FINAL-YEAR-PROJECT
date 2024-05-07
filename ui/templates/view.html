@@ -1,123 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <title>Journals & Publications</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <!-- <link rel="stylesheet" href="../css/view.css"> -->
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/view.css') }}">
+    <title>Papers & Publications</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../static/css/view.css">
+<script src="{{ url_for('static', filename='js/search.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+body {
+  font-family: "Lato", sans-serif;
+  overflow-y: scroll;
+}
+.hidden {
+    display: none; /* Hide the element */
+}
+
+
+</style>
+
+
 
 </head>
-
 <body>
 
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#"><img src="{{ url_for('static', filename='images/logo2.jpeg') }}" alt="Logo"></a>
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown"><a href="#">Home</a></li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Category
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Neural_Network</a></li>
-                            <li><a href="#">Probablistic_Methods</a></li>
-                            <li><a href="#">Theory</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href="#">About</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#" data-toggle="modal" data-target="#profileModal">
-                            <span class="glyphicon glyphicon-user"></span> Profile</a>
-                    </li>
-                </ul>
-            </div>
+  
+
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+
+
+
+  <div class="section full-height">
+    <input class="modal-btn" type="checkbox" id="modal-btn" name="modal-btn"/>
+    <label for="modal-btn">About <i class="uil uil-expand-arrows"></i></label> 
+    <div class="modal">		
+        <div class="modal-wrap">	
+          <img src="https://assets.codepen.io/1462889/sl3.jpg" alt="">	
+            <p>Final year project. Topic: Bibliometric Analysis</p>	          		
+        </div>			          		
+    </div>	
+    <div>
+        <button class="home-btn" onclick="ToSearch()">Home</button>
+
+    </div>
+
+  <a href="{{ url_for('static', filename='templates/search.html') }}" class="logo" target="_blank">
+      <img src="../static/images/logo2.jpeg" alt="Logo">
+  </a>	
+</div>
+
+</div>
+
+<div id="side-btn">
+  <image src="../static/images/ham.png" alt="Menu" class="openbtn" onclick="openNav()"></image>
+</div>
+
+<div id="main">
+    <div class="left">
+        <div class="paper">
+            <h1 style="text-align: center;">A Trip-based Multicasting Model in Wormhole-routed Networks with Virtual Channels</h1>
+            <h4 style="text-align: center;">Yu-Chee Tseng, Dhabaleswar K. Panda, Member, IEEE, and Ten-Hwang Lai, Member, IEEE</h4>
+            <p style="text-align: justify;"><b>Abstract</b> </br> This paper focuses on efficient multicasting in wormhole-routed networks. A trip-based
+                 model is proposed to support adaptive, distributed, and deadlock-free multiple multicast on any network with arbitrary 
+                 topology using at most two virtual channels per physical channel. This model significantly generalizes the path-based 
+                 model proposed earlier [21], [22], which works only for Hamiltonian networks and can not be applicable to networks 
+                 with arbitrary topology resulted due to system faults. Fundamentals of the trip-based model, including the necessary 
+                 and sufficient condition to be deadlock-free, and the use of appropriate number of virtual channels to avoid deadlock 
+                 are investigated. The potential of this model is illustrated by applying it to hyper-cubes with faulty nodes. 
+                 Simulation results indicate that the proposed model can implement multiple multicast on faulty hypercubes with 
+                 negligible performance degradation.</p>
         </div>
-    </nav>
-
-    <div class="fixed-box ">
-        <h4>Page <br>relevance <br>score
-        </h4>
-        <div class="box">
-            <h5>5/10</h5>
+        <div class="community">
+            <h2>Related Papers</h2>
+            <ul>
+                <li>paper 1</li>
+                <li>paper 2</li>
+            </ul>
         </div>
     </div>
+    <div class="right">
+        <div class="top"><h1>Cited Papers</h1></div>
+        <div class="bottom">
+            <ul>
+                <li>A Trip-based Multicasting Model in Wormhole-routed Networks with Virtual Channels</li>
+                <li>paper 2</li>
+            </ul>
+        </div>
 
-    <div class=" head ">
-
-        <h1>Paper Name</h1>
-        <h2>Author names, Publication, year</h2>
     </div>
-    <div class=" body ">
-        <h3>Abstract</h3>
-        <p>
+</div>
 
-            An abstract is a concise summary of your research paper, typically one paragraph of 150-250 words, that presents the key points of your work in a clear and informative way. It acts as a preview of the full paper, enticing readers to delve deeper while
-            also providing essential information for those who may not read the entire document. Here's what a good abstract typically includes: Research question or problem: Briefly state the topic you investigated and the specific question(s) you aimed
-            to answer. Methodology: Describe the methods you used to conduct your research, including data collection, analysis techniques, etc. Key findings: Highlight the most important results of your study, emphasizing any significant discoveries
-            or contributions to the field. Conclusion and implications: Briefly summarize your main conclusions and potential applications or implications of your findings. Remember: Your abstract should be objective and factual, avoiding personal opinions
-            or interpretations. Use clear and concise language, avoiding jargon and technical terms unless absolutely necessary. Organize your information logically and ensure your sentences flow smoothly. Proofread carefully for any grammatical errors
-            or typos. The goal of a good abstract is to engage readers, spark their curiosity, and inform them about the essence of your research without divulging too much. It's your opportunity to make a strong first impression, so take the time to
-            craft a compelling and informative summary! I hope this explanation clarifies what an abstract is and its importance in your research paper.</p>
-    </div>
-    <div class="table">
-        <h3><b>Related papers</b></h3>
-        <table>
-            <tr>
-                <td>
-                    <button class=" btn"> Paper Name, Author Name, Publication, Year</button> </td>
-            </tr>
-            <tr>
-                <td><button class=" btn">Paper Name, Author Name, Publication, Year </button></td>
-            </tr>
-            <tr>
-                <td> <button class=" btn">Paper Name, Author Name, Publication, Year</button> </td>
-            </tr>
-            <tr>
-                <td> <button class=" btn">Paper Name, Author Name, Publication, Year</button>
-                </td>
-            </tr>
-            <tr>
-                <td> <button class=" btn">Paper Name, Author Name, Publication, Year</button>
-                </td>
-            </tr>
-            <tr>
-                <td> <button class=" btn">Paper Name, Author Name, Publication, Year</button>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <!-- <script>
-        // Function to extract node ID from query parameter
-        function getNodeIdFromQuery() {
-            const queryString = window.location.search;
-            const urlParams = new URLSearchParams(queryString);
-            const nodeId = urlParams.get('node');
-            return nodeId;
-        }
 
-        // Get node ID from query parameter
-        const nodeId = getNodeIdFromQuery();
-        if (nodeId) {
-            alert('You clicked on node ID: ' + nodeId);
-            // You can perform further actions based on the clicked node ID
-        }
-    </script> -->
+<script>
+    function ToSearch() {
+        window.location.href = "search";
+    }
+</script>
+
+
+<script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+</script>
+ 
+
+
 </body>
-
-</html>
+</html> 
