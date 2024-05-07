@@ -2,102 +2,103 @@
 <html>
 <head>
     <title>Papers & Publications</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="../static/css/search.css">
-<script src="{{ url_for('static', filename='js/search.js') }}"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<style>
-body {
-  font-family: "Lato", sans-serif;
-}
-</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../static/css/search.css">
+    <script src="{{ url_for('static', filename='js/search.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+            overflow-y: scroll; /* Add scrollbar */
+        }
 
-
-
+        .hidden {
+            display: none; /* Hide the element */
+        }
+       .search-results {
+            margin-top: 30%;
+            max-height: 800px; /*Increase the maximum height of the container */
+            overflow-y: auto; /* Add scrollbar when content exceeds the height */
+        }
+    </style>
 </head>
 <body>
 
 <div id="mySidebar" class="sidebar">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 
+    <div class="section full-height">
+        <input class="modal-btn" type="checkbox" id="modal-btn" name="modal-btn"/>
+        <label for="modal-btn">About <i class="uil uil-expand-arrows"></i></label>
+        <div class="modal">
+            <div class="modal-wrap">
+                <img src="https://assets.codepen.io/1462889/sl3.jpg" alt="">
+                <p>Final year project. Topic: Bibliometric Analysis</p>
+            </div>
+        </div>
 
-
-  <div class="section full-height">
-    <input class="modal-btn" type="checkbox" id="modal-btn" name="modal-btn"/>
-    <label for="modal-btn">About <i class="uil uil-expand-arrows"></i></label> 
-    <div class="modal">		
-        <div class="modal-wrap">	
-          <img src="https://assets.codepen.io/1462889/sl3.jpg" alt="">	
-            <p>Final year project. Topic: Bibliometric Analysis</p>	          		
-        </div>			          		
-    </div>	
-
-  <a href="{{ url_for('static', filename='templates/search.html') }}" class="logo" target="_blank">
-      <img src="../static/images/logo2.jpeg" alt="Logo">
-  </a>	
-</div>
+        <a href="{{ url_for('static', filename='templates/search.html') }}" class="logo" target="_blank">
+            <img src="../static/images/logo2.jpeg" alt="Logo">
+        </a>
+    </div>
 
 </div>
-<!-- <div id="side-btn">
-  <button class="openbtn" onclick="openNav()"><image src="../static/images/ham.png" ></image></button>  
-</div> -->
+
 <div id="side-btn">
-  <image src="../static/images/ham.png" alt="Menu" class="openbtn" onclick="openNav()"></image>
+    <img src="../static/images/ham.png" alt="Menu" class="openbtn" onclick="openNav()">
 </div>
-
-
-
-
-
 
 <div id="main">
     <div class="left">
         <iframe src="../static/node_classification_vis.html" width="100%" height="900" frameborder="0"></iframe>
     </div>
 
-
     <div class="right">
-      <div class="top">
-        <div id="cover">
-          <form  id="search-form"  method="POST" >
-            <div class="tb">
-              <div class="td">
-            <input id="search-input" type="text" placeholder="Search.." name="search" required></div>
-            <div class="td" id="s-cover"></div>
-              <button type="submit"><div id="s-circle"></div><span></span></button>
+        <div class="top">
+            <div id="cover">
+                <form id="search-form" method="POST">
+                    <div class="tb" id="search-input-container">
+                        <div class="td">
+                            <input id="search-input" type="text" placeholder="Search.." name="search" required>
+                        </div>
+                        <div class="td" id="s-cover"></div>
+                        <button type="submit"><div id="s-circle"></div><span></span></button>
+                    </div>
+                </form>
             </div>
-          </div>
-        </form>
-      </div>
-          <div class="search-results" type="text">
-            <ul>
-              {% for item in result %}
-                <li>{{ item }}</li>
-              {% endfor %}
-            </ul>
-            
-          </div>
+            <div class="search-results" type="text">
+                <ul>
+                    {% for item in result %}
+                    <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </div>
 </div>
 
-
-
-
-
 <script>
-function openNav() {
-  document.getElementById("mySidebar").style.width = "250px";
-  document.getElementById("main").style.marginLeft = "250px";
-}
+    function openNav() {
+        document.getElementById("mySidebar").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+    }
 
-function closeNav() {
-  document.getElementById("mySidebar").style.width = "0";
-  document.getElementById("main").style.marginLeft= "0";
-}
+    function closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+    }
+
+    // Toggle the visibility of the search input field, cover, and submit button
+    function toggleSearchInput() {
+        var searchInputContainer = document.getElementById("search-input-container");
+        searchInputContainer.classList.toggle("hidden");
+    }
+    // var searchResults = document.querySelector('.search-results ul');
+    // var searchForm = document.getElementById("cover");
+    // if (searchResults.children.length > 0) {
+    //     searchForm.classList.add("hidden");
+    // }
 </script>
-   
-
 
 </body>
-</html> 
+</html>

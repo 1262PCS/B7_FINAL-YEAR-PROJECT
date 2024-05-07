@@ -49,8 +49,8 @@
   /* color: white; */
   padding: 10px 15px;
   border: none;
-  height: 100px;
-  width: 100px;
+  height: 70px;
+  width: 70px;
 }
 
 .openbtn:hover {
@@ -139,8 +139,8 @@ button {
   right: 0;
   width: 90%;
   height:50px;
-  padding: 35px;
-  margin: -83px auto 0 auto;
+  padding: 15px;
+  margin: -129px auto 0 auto;
   background-color: #ff7575;
   border-radius: 20px;
   box-shadow: 0 10px 40px #ff7c7c, 0 0 0 20px #ffffffeb;
@@ -173,14 +173,15 @@ button {
   width: 84px;
   height: 20px;
   cursor: pointer;
+  color: #0c0c0c;
 }
 
 #s-circle {
   position: relative;
-  top: -8px;
-  left: 0;
-  width: 43px;
-  height: 43px;
+  top: -13px;
+  left: 25;
+  width: 27px;
+  height: 24px;
   margin-top: 0;
   border-width: 15px;
   border: 15px solid #fff;
@@ -206,10 +207,10 @@ button span:before,
 button span:after {
   content: "";
   position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 45px;
-  height: 15px;
+  top: -4px;
+  right: 34px;
+  width: 42px;
+  height: 9px;
   background-color: #fff;
   border-radius: 10px;
   transform: rotateZ(0);
@@ -487,7 +488,7 @@ p{
 .buttons-container button {
     padding: 8px 16px;
     background-color: #007bff;
-    color: #fff;
+    color: #0c0c0c;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -496,5 +497,6 @@ p{
 .buttons-container button:hover {
     background-color: #0056b3;
 }
+
 
 }
