@@ -55,10 +55,6 @@ def search():
         search_result=search_papers(userInput)
         results= display_results(search_result)
         return render_template('search.html', result=results)
-        # print(results)
-        # # return results
-        # return jsonify({'result': results})
-        # # render_template('search_result.html',result=results)
     return render_template('search.html')
 
 

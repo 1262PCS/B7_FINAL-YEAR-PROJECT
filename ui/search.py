@@ -1,9 +1,9 @@
 import pandas as pd
-
+import csv
 
 
 # Specify the path to your CSV file
-file_path = "nc_data.csv"
+file_path = "all_papers.csv"
 
 # Read the CSV file into a DataFrame
 df = pd.read_csv(file_path)
@@ -62,33 +62,25 @@ def display_results(matching_papers):
 
   # print(list) 
 
-# [
-#         {'Paper Title': 'Title 1', 'Author': 'Author 1', 'Year': 2023},
-#         {'Paper Title': 'Title 2', 'Author': 'Author 2', 'Year': 2022},
-#         # ... more results
-#     ]
-
-# def display_results(matching_papers):
-#   """
-#   This function displays the search results with paper titles and other relevant information.
-
-#   Args:
-#       matching_papers: A DataFrame containing matching papers.
-#   """
-
-#   if matching_papers.empty:
-#     return("No results found.")
-
-#   # Access paper titles and potentially other columns you want to display
-#   paper_titles = matching_papers['Paper Title'].tolist()
-#   results_html = "<ul>"
-#   for title in paper_titles:
-#       results_html += f"<li>{title}</li>"
-#   results_html += "</ul>"
-#   return results_html
-
 # # Example usage
 # keyword = input("Enter your search keyword: ")
 # matching_papers = search_papers(keyword)
 # display_results(matching_papers)
 
+data=pd.read_csv("updated_dataset.csv")
+
+def paper_data(matching_papers,data):
+  paper_id = matching_papers['Id'].tolist()
+  print(paper_id)
+  id=int(input("Enter id: "))
+  for index, row in data.iterrows():
+      if row['node_id'] == id:
+          print(row)
+  return ("None")
+      
+
+
+
+# keyword=input("Enter: ")
+# matching_papers=search_papers(keyword)
+# paper_data(matching_papers,data)
