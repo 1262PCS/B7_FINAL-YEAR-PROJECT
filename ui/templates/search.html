@@ -34,9 +34,18 @@
         <label for="modal-btn">About <i class="uil uil-expand-arrows"></i></label>
         <div class="modal">
             <div class="modal-wrap">
-                <img src="https://assets.codepen.io/1462889/sl3.jpg" alt="">
-                <p>Final year project. Topic: Bibliometric Analysis</p>
+                <img src="../static/images/logo2.jpeg" alt="">
+                <p>Welcome to our revolutionary platform! We're all about making your journey through vast scholarly literature repositories seamless and insightful. 
+
+                    Imagine effortlessly exploring research papers with intuitive visualization of citation networks and crystal-clear classification results. Our intelligent web interface is designed to make paper retrieval a breeze, so you can focus on what matters most—extracting valuable insights.
+                    
+                    And let's talk about Samvidh, your personal chatbot assistant. I'm here to enhance your experience with natural language queries, interactive methods, and quick paper retrieval. Together, we're revolutionizing how you interact with data and dive deep into scholarly literature.
+                    
+                    Join us on this exciting journey of revolutionizing paper analytics and user-centric interfaces. Whether you're a researcher or a practitioner, we're here to empower you every step of the way.</p>
             </div>
+        </div>
+        <div>
+            <button class="out-btn" onclick="ToLogin()">Logout</button>
         </div>
 
         <a href="{{ url_for('static', filename='templates/search.html') }}" class="logo" target="_blank">
@@ -71,13 +80,35 @@
             <div class="search-results" type="text">
                 <ul>
                     {% for item in result %}
-                    <li><a style="cursor: pointer;" onclick="ToView()">{{ item }}</a></li>
+                    <!-- <li><a style="cursor: pointer;" onclick="ToView()">{{ item }}</a></li> -->
+                    <li><a style="cursor: pointer;" href="#popup-box">{{ item }}</a></li>
                     {% endfor %}
                 </ul>
+                
+            </div>
+            <div id="popup-box" class="pop-btn">
+                <div class="pop-content">
+                    <image class="bot-btn" src="../static/images/chatbot.png" onclick="ToSearch()"></image>
+                    <image class="view-btn"src="../static/images/file.png" onclick="ToView()"></image>
+                    <a
+                        href="#"
+                        style="
+                            position: absolute;
+                            top: 10px;
+                            right: 10px;
+                            color: #fe0606;
+                            font-size: 30px;
+                            text-decoration: none;
+                        "
+                        >&times;</a
+                    >
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+
 
 <script>
     function openNav() {
@@ -103,7 +134,20 @@
     function ToView(){
         window.location.href="/view";
     }
+    function ToSearch() {
+        window.location.href = "search";
+    }
+
+    // Perform logout action
+    function ToLogin() {
+        window.location.href="login";
+        // Your logout action here, such as redirecting to a logout page
+        console.log('Logging out...');
+        // For demonstration purposes, let's just alert the user
+        alert('Are you sure you want to logout?');
+    }
 </script>
+
 
 </body>
 </html>

@@ -3,7 +3,6 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="stylesheet" href="../css/login.css"> -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
 
 </head>
@@ -13,9 +12,11 @@
     <form action="/login" method="post">
         <div class="container">
             <label for="email"><b>Email</b></label>
+            <br>
             <input type="text" placeholder="Enter Your email" name="email" required>
             <br><br>
             <label for="psw"><b>Password</b></label>
+            <br>
             <input type="password" placeholder="Enter Password" name="psw" required>
             <br><br>
             {% if message %}
@@ -32,7 +33,7 @@
             </div>
         </div>
 
-        <div class="container" style="background-color:#f1f1f1">
+        <div class="container" >
             <button class="signbtn">Do not have an account? <a href="/signup">Sign Up</a></button>
             <span class="psw">Forgot <a href="#">password?</a></span>
         </div>

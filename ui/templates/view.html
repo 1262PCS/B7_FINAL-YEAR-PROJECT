@@ -58,23 +58,29 @@ body {
 <div id="main">
     <div class="left">
         <div class="paper">
-            <h1 style="text-align: center;">A Trip-based Multicasting Model in Wormhole-routed Networks with Virtual Channels</h1>
-            <h4 style="text-align: center;">Yu-Chee Tseng, Dhabaleswar K. Panda, Member, IEEE, and Ten-Hwang Lai, Member, IEEE</h4>
-            <p style="text-align: justify;"><b>Abstract</b> </br> This paper focuses on efficient multicasting in wormhole-routed networks. A trip-based
-                 model is proposed to support adaptive, distributed, and deadlock-free multiple multicast on any network with arbitrary 
-                 topology using at most two virtual channels per physical channel. This model significantly generalizes the path-based 
-                 model proposed earlier [21], [22], which works only for Hamiltonian networks and can not be applicable to networks 
-                 with arbitrary topology resulted due to system faults. Fundamentals of the trip-based model, including the necessary 
-                 and sufficient condition to be deadlock-free, and the use of appropriate number of virtual channels to avoid deadlock 
-                 are investigated. The potential of this model is illustrated by applying it to hyper-cubes with faulty nodes. 
-                 Simulation results indicate that the proposed model can implement multiple multicast on faulty hypercubes with 
-                 negligible performance degradation.</p>
+            <h1 style="text-align: center;">The MIT Alewife machine: architecture and performance</h1>
+            <h4 style="text-align: center;">A. Agarwal; R. Bianchini; D. Chaiken; K.L. Johnson; D. Kranz; J. Kubiatowicz; Beng-Hong Lim; K. Mackenzie; D. Yeung</h4>
+            <p style="text-align: justify;"><b>Abstract</b> </br>Alewife is a multiprocessor architecture 
+                that supports up to 512 processing nodes connected over a scalable and cost-effective 
+                mesh network at a constant cost per node. The MIT Alewife machine, a prototype implementation 
+                of the architecture, demonstrates that a parallel system can be both scalable and programmable. 
+                Four mechanisms combine to achieve these goals: software-extended coherent shared memory provides a 
+                global, linear address space; integrated message passing allows compiler and operating system designers to 
+                provide efficient communication and synchronization; support for fine-grain computation allows many processors 
+                to cooperate on small problem sizes; and latency tolerance mechanisms-including block multithreading 
+                and prefetching-mask unavoidable delays due to communication. Microbenchmarks, together with over a 
+                dozen complete applications running on the 32-node prototype, help to analyze the behavior of the system. 
+                Analysis shows that integrating message passing with shared memory enables a cost-efficient solution to 
+                the cache coherence problem and provides a rich set of programming primitives. Block multithreading and 
+                prefetching improve performance by up to 25%, individually, and 35% together. Finally, language constructs 
+                that allow programmers to express fine-grain synchronization can improve performance by over a factor of two.</p>
         </div>
         <div class="community">
             <h2>Related Papers</h2>
             <ul>
-                <li>paper 1</li>
-                <li>paper 2</li>
+                <li>Mohammed A. Noaman Al-hayanni, Fei Xia, Ashur Rafiev, Alexander Romanovsky, Rishad Shafik, Alex Yakovlev, "Amdahl's law in the context of heterogeneous many-core systems – a survey", IET Computers & Digital Techniques, vol.14, no.4, pp.133-148, 2020</li>
+                <li>Chang-qing Xun, Dong Chen, Qiang Lan, Chun-yuan Zhang, "Efficient fine-grained shared buffer management for multiple OpenCL devices", Journal of Zhejiang University SCIENCE C, vol.14, no.11, pp.859, 2013.</li>
+                <li>Magnus Karlsson, Per Stenström, "Effectiveness of Dynamic Prefetching in Multiple-Writer Distributed Virtual Shared-Memory Systems", Journal of Parallel and Distributed Computing, vol.43, no.2, pp.79, 1997.</li>
             </ul>
         </div>
     </div>
@@ -82,8 +88,9 @@ body {
         <div class="top"><h1>Cited Papers</h1></div>
         <div class="bottom">
             <ul>
-                <li>A Trip-based Multicasting Model in Wormhole-routed Networks with Virtual Channels</li>
-                <li>paper 2</li>
+                <li>Josué Feliu, Ajeya Naithani, Julio Sahuquillo, Salvador Petit, Moinuddin Qureshi, Lieven Eeckhout, "VMT: Virtualized Multi-Threading for Accelerating Graph Workloads on Commodity Processors", IEEE Transactions on Computers, vol.71, no.6, pp.1386-1398, 2022.</li>
+                <li>Shenghsun Cho, Amoghavarsha Suresh, Tapti Palit, Michael Ferdman, Nima Honarmand, "Taming the Killer Microsecond", 2018 51st Annual IEEE/ACM International Symposium on Microarchitecture (MICRO), pp.627-640, 2018.</li>
+                <li>Pooria M. Yaghini, George Michelogiannakis, Paul V. Gratz, "SpecLock: Speculative Lock Forwarding", 2019 IEEE 37th International Conference on Computer Design (ICCD), pp.273-282, 2019.</li>
             </ul>
         </div>
 
