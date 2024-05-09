@@ -81,8 +81,8 @@
                 <ul>
                     {% for item in result %}
                     <!-- <li><a style="cursor: pointer;" onclick="ToView()">{{ item }}</a></li> -->
-                    <!-- <li><a style="cursor: pointer;" href="#popup-box">{{ item }}</a></li> -->
-                    <li><a style="cursor: pointer;" onclick="ToView('{{ item }}')">{{ item }}</a></li>
+                    <li><a style="cursor: pointer;" onclick="ToPop('{{ item }}')">{{ item }}</a></li>
+                    <!-- <li><a style="cursor: pointer;" onclick="ToView()">{{ item }}</a></li> -->
                     {% endfor %}
                 </ul>
                 
@@ -136,11 +136,18 @@
     //     window.location.href="/view";
     // }
     function ToView(itemContent) {
-    window.location.href = "/view?item=" + encodeURIComponent(itemContent);
+    window.location.href = "/view?item=" + encodeURIComponent(globalItemContent);
 }
     function ToSearch() {
         window.location.href = "search";
     }
+
+    function ToPop(itemContent) {
+        const popup = document.getElementById('popup-box');
+        popup.style.display = 'block';
+        globalItemContent = itemContent;
+    }
+
 
     // Perform logout action
     function ToLogin() {
