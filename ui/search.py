@@ -54,7 +54,7 @@ def display_results(matching_papers):
       # print(i)
     
   # else:
-  list=list[:5]
+  # list=list[:5]
     # for i in list:
       # print(i)
   return list
@@ -66,21 +66,6 @@ def display_results(matching_papers):
 # keyword = input("Enter your search keyword: ")
 # matching_papers = search_papers(keyword)
 # display_results(matching_papers)
-
-data=pd.read_csv("updated_dataset.csv")
-
-def paper_data(matching_papers,data):
-  paper_id = matching_papers['Id'].tolist()
-  print(paper_id)
-  id=int(input("Enter id: "))
-  for index, row in data.iterrows():
-      if row['node_id'] == id:
-          print(row)
-  return ("None")
-      
-
-
-
 # keyword=input("Enter: ")
 # matching_papers=search_papers(keyword)
 # paper_data(matching_papers,data)

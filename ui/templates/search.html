@@ -81,7 +81,8 @@
                 <ul>
                     {% for item in result %}
                     <!-- <li><a style="cursor: pointer;" onclick="ToView()">{{ item }}</a></li> -->
-                    <li><a style="cursor: pointer;" href="#popup-box">{{ item }}</a></li>
+                    <!-- <li><a style="cursor: pointer;" href="#popup-box">{{ item }}</a></li> -->
+                    <li><a style="cursor: pointer;" onclick="ToView('{{ item }}')">{{ item }}</a></li>
                     {% endfor %}
                 </ul>
                 
@@ -131,9 +132,12 @@
     // if (searchResults.children.length > 0) {
     //     searchForm.classList.add("hidden");
     // }
-    function ToView(){
-        window.location.href="/view";
-    }
+    // function ToView(){
+    //     window.location.href="/view";
+    // }
+    function ToView(itemContent) {
+    window.location.href = "/view?item=" + encodeURIComponent(itemContent);
+}
     function ToSearch() {
         window.location.href = "search";
     }

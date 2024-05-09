@@ -58,8 +58,9 @@ body {
 <div id="main">
     <div class="left">
         <div class="paper">
-            <h1 style="text-align: center;">The MIT Alewife machine: architecture and performance</h1>
-            <h4 style="text-align: center;">A. Agarwal; R. Bianchini; D. Chaiken; K.L. Johnson; D. Kranz; J. Kubiatowicz; Beng-Hong Lim; K. Mackenzie; D. Yeung</h4>
+            <h1 style="text-align: center;">{{result}}</h1>
+            <h4 style="text-align: center;">{{authors}}</h4>
+            <h4 style="text-align: left;">Publisher:{{Publisher}}</h4>
             <p style="text-align: justify;"><b>Abstract</b> </br>Alewife is a multiprocessor architecture 
                 that supports up to 512 processing nodes connected over a scalable and cost-effective 
                 mesh network at a constant cost per node. The MIT Alewife machine, a prototype implementation 
@@ -88,9 +89,9 @@ body {
         <div class="top"><h1>Cited Papers</h1></div>
         <div class="bottom">
             <ul>
-                <li>Josué Feliu, Ajeya Naithani, Julio Sahuquillo, Salvador Petit, Moinuddin Qureshi, Lieven Eeckhout, "VMT: Virtualized Multi-Threading for Accelerating Graph Workloads on Commodity Processors", IEEE Transactions on Computers, vol.71, no.6, pp.1386-1398, 2022.</li>
-                <li>Shenghsun Cho, Amoghavarsha Suresh, Tapti Palit, Michael Ferdman, Nima Honarmand, "Taming the Killer Microsecond", 2018 51st Annual IEEE/ACM International Symposium on Microarchitecture (MICRO), pp.627-640, 2018.</li>
-                <li>Pooria M. Yaghini, George Michelogiannakis, Paul V. Gratz, "SpecLock: Speculative Lock Forwarding", 2019 IEEE 37th International Conference on Computer Design (ICCD), pp.273-282, 2019.</li>
+                {% for item in citations %}
+                    <li>{{ item }}</li>
+                {% endfor %}
             </ul>
         </div>
 

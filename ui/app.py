@@ -2,9 +2,10 @@ import re
 from flask import Flask, jsonify, render_template, request, redirect, url_for
 from db import create_table, add_user, authenticate_user
 from search import search_papers,display_results
-
+from view import paper_data_title,paper_data_author,paper_data_citations,paper_data_publisher
 
 app = Flask(__name__)
+
 
 create_table()
 
@@ -59,10 +60,14 @@ def search():
 
 
 
-
-@app.route('/view')
+@app.route('/view', methods=['GET'])
 def view():
-    return render_template('view.html')
+    item_content = request.args.get('item')
+    title = paper_data_title(item_content)
+    authors=paper_data_author(item_content)
+    citations = paper_data_citations(item_content)
+    Publisher = paper_data_publisher(item_content)
+    return render_template('view.html',result = title, authors =authors,citations =citations, Publisher=Publisher)
 
 @app.route('/page1')
 def page():
