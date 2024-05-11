@@ -11,7 +11,10 @@ import requests
 import io
 import tempfile
 
-model_path = r"C:\Users\MY PC\Downloads\SAMVIDH FINAL\orca-mini-3b.q4_0.gguf"
+# Load model directly
+llm = AutoModelForCausalLM.from_pretrained(
+    "zoltanctoth/orca_mini_3B-GGUF", model_file="orca-mini-3b.q4_0.gguf"
+)
 
 # Sidebar contents
 with st.sidebar:
@@ -28,12 +31,7 @@ with st.sidebar:
 def main():
     st.header("Chat with PDF")
     
-    # Initialize embeddings and model
-    if os.path.exists(model_path):
-        llm = AutoModelForCausalLM.from_pretrained(model_path)
-    else:
-        st.error("Model file not found. Please ensure that the model file is located at the specified path.")
-
+    
     embeddings = None
     model = None
     
@@ -92,7 +90,7 @@ def extract_text_from_pdf(pdf_content):
 
 def split_text_into_chunks(text):
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=500,
+        chunk_size=250,  # Reduce chunk size to 250 characters
         chunk_overlap=100,
         length_function=len
     )
@@ -126,6 +124,16 @@ def answer_query(llm, query, embeddings, model, chunks):
             st.text_area(f"Previous Query {len(previous_queries)-idx}:", value=prev_query, height=100, disabled=True)
             st.text_area(f"Previous Answer {len(previous_queries)-idx}:", value=prev_response, height=200, disabled=True)
 
+def generate_response(llm, prompt):
+    response = ""
+    for word in llm(prompt, stream=True):
+        print(word, end="", flush=True)
+        response += word
+    print()
+    return response
+
+
+
 def get_prompt(instruction: str, similar_docs: List[str], top_k=3) -> str:
     system = "You are an AI assistant that gives helpful answers. You answer the question in a short and concise way."
     prompt = f"### System:\n{system}\n\n### User:\n{instruction}\n\n### Documents:\n"
@@ -134,11 +142,7 @@ def get_prompt(instruction: str, similar_docs: List[str], top_k=3) -> str:
     prompt += "\n### Response:\n"
     return prompt
 
-def generate_response(llm, prompt):
-    response = ""
-    for word in llm(prompt, stream=True):
-        response += word
-    return response
+
 
 if __name__ == '__main__':
     main()
