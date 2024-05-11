@@ -414,18 +414,25 @@
     position: fixed;
     bottom: 10px; /* Adjust as needed */
     right: 10px; /* Adjust as needed */
+    background-color: transparent;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
 
 .pop-content {
-    display: flex;
-    flex-direction: row-reverse; /* Buttons aligned to the right */
-    align-items: flex-end; /* Align buttons to the bottom */
+  position: relative;
+  background: transparent;
+  padding: 1em 2em;
+  border-radius: 4px;
+  /* box-shadow:0 4px 8px rgb(0 0 0 / 64%); */
+    
 }
 
 .bot-btn, .view-btn {
-    width: 80px; /* Adjust as needed */
-    height: 80px; /* Adjust as needed */
-    margin-left: 10px; /* Adjust as needed */
+    width: 80px; 
+    height: 80px;
+    margin-left: 10px;
+    cursor: pointer;
+
 }
-  
+
   

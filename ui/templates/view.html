@@ -111,10 +111,11 @@ body {
     function redirectToPDF(link) {
         window.location.href = link;
     }
-    function redirectToBOT(link)
-    {
-        window.location.href = '/path/to/chat with samvidh/app.py?link=' + encodeURIComponent(link);
-    }
+    function redirectToBOT(link) {
+    var botUrl = "http://localhost:8501/";  // Adjust the URL to match your Flask app's URL
+    var redirectUrl = `${botUrl}?link=${encodeURIComponent(link)}`;
+    window.location.href = redirectUrl;
+}
 </script>
 
 
