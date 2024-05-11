@@ -10,6 +10,7 @@ import os
 import requests
 import io
 import tempfile
+from flask import request
 
 # Load model directly
 llm = AutoModelForCausalLM.from_pretrained(
@@ -36,8 +37,9 @@ def main():
     model = None
     
     # User input: Provide PDF Link
-    pdf_link = st.text_input("Enter the link to the PDF file:")
-    
+    link = st.experimental_get_query_params().get('link', [''])[0]
+    # print(link)
+    pdf_link = st.text_input("Paper link:", value=link)
     # User input: Query
     query = st.text_area("Ask questions about your PDF file:", height=100)
     

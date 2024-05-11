@@ -61,27 +61,14 @@ body {
             <h1 style="text-align: center;">{{result}}</h1>
             <h4 style="text-align: center;">{{authors}}</h4>
             <h4 style="text-align: left;">Publisher:{{Publisher}}</h4>
-            <p style="text-align: justify;"><b>Abstract</b> </br>Alewife is a multiprocessor architecture 
-                that supports up to 512 processing nodes connected over a scalable and cost-effective 
-                mesh network at a constant cost per node. The MIT Alewife machine, a prototype implementation 
-                of the architecture, demonstrates that a parallel system can be both scalable and programmable. 
-                Four mechanisms combine to achieve these goals: software-extended coherent shared memory provides a 
-                global, linear address space; integrated message passing allows compiler and operating system designers to 
-                provide efficient communication and synchronization; support for fine-grain computation allows many processors 
-                to cooperate on small problem sizes; and latency tolerance mechanisms-including block multithreading 
-                and prefetching-mask unavoidable delays due to communication. Microbenchmarks, together with over a 
-                dozen complete applications running on the 32-node prototype, help to analyze the behavior of the system. 
-                Analysis shows that integrating message passing with shared memory enables a cost-efficient solution to 
-                the cache coherence problem and provides a rich set of programming primitives. Block multithreading and 
-                prefetching improve performance by up to 25%, individually, and 35% together. Finally, language constructs 
-                that allow programmers to express fine-grain synchronization can improve performance by over a factor of two.</p>
+            <p style="text-align: justify;"><b>Abstract</b> </br>{{abstract}}</p>
         </div>
         <div class="community">
             <h2>Related Papers</h2>
             <ul>
-                <li>Mohammed A. Noaman Al-hayanni, Fei Xia, Ashur Rafiev, Alexander Romanovsky, Rishad Shafik, Alex Yakovlev, "Amdahl's law in the context of heterogeneous many-core systems – a survey", IET Computers & Digital Techniques, vol.14, no.4, pp.133-148, 2020</li>
-                <li>Chang-qing Xun, Dong Chen, Qiang Lan, Chun-yuan Zhang, "Efficient fine-grained shared buffer management for multiple OpenCL devices", Journal of Zhejiang University SCIENCE C, vol.14, no.11, pp.859, 2013.</li>
-                <li>Magnus Karlsson, Per Stenström, "Effectiveness of Dynamic Prefetching in Multiple-Writer Distributed Virtual Shared-Memory Systems", Journal of Parallel and Distributed Computing, vol.43, no.2, pp.79, 1997.</li>
+                {% for item in community %}
+                <li><a style="cursor: pointer;" onclick="ToView('{{ item }}')">{{ item }}</a></li>
+                {% endfor %}
             </ul>
         </div>
     </div>
