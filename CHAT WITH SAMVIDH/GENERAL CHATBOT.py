@@ -32,17 +32,7 @@ llm = AutoModelForCausalLM.from_pretrained(
 
 # Function to process user query and display relevant papers
 
-def process_and_display_query(query):
-    keywords = query.split()
 
-    # Filter the DataFrame based on the keywords and exclude rows with None abstract
-    filtered_df = merged_df[(merged_df.apply(lambda row: any(keyword.lower() in str(row) for keyword in keywords), axis=1)) & (merged_df['abstract'].notnull())]
-
-    # Display only the desired columns
-    if not filtered_df.empty:
-        display(filtered_df[['paper_id', 'category', 'title', 'author', 'abstract']])
-    else:
-        print("No matching papers found or abstracts are missing.")
 
 def get_prompt(instruction: str) -> str:
     system = "You are an AI assistant that gives helpful answers. You answer the question in a short and concise way."
