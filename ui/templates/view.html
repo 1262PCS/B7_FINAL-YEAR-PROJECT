@@ -90,18 +90,30 @@ body {
         <div class="bottom">
             <ul>
                 {% for item in citations %}
-                    <li>{{ item }}</li>
+                <li><a style="cursor: pointer;" onclick="ToView('{{ item }}')">{{ item }}</a></li>
                 {% endfor %}
             </ul>
         </div>
 
     </div>
-</div>
+    <div id="popup-box" class="pop-btn">
+        <div class="pop-content">
+            <image class="bot-btn" src="../static/images/chatbot.png" onclick="redirectToBOT('{{link}}')"></image>
+            <image class="view-btn" src="../static/images/file.png" onclick="redirectToPDF('{{link}}')"></image>
+        </div>
+    </div>
 
 
 <script>
     function ToSearch() {
         window.location.href = "search";
+    }
+    function redirectToPDF(link) {
+        window.location.href = link;
+    }
+    function redirectToBOT(link)
+    {
+        window.location.href = '/path/to/chat with samvidh/app.py?link=' + encodeURIComponent(link);
     }
 </script>
 
@@ -115,6 +127,9 @@ function openNav() {
 function closeNav() {
   document.getElementById("mySidebar").style.width = "0";
   document.getElementById("main").style.marginLeft= "0";
+}
+function ToView(itemContent) {
+    window.location.href = "/view?item=" + encodeURIComponent(itemContent);
 }
 </script>
  

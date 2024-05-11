@@ -81,29 +81,11 @@
                 <ul>
                     {% for item in result %}
                     <!-- <li><a style="cursor: pointer;" onclick="ToView()">{{ item }}</a></li> -->
-                    <li><a style="cursor: pointer;" onclick="ToPop('{{ item }}')">{{ item }}</a></li>
-                    <!-- <li><a style="cursor: pointer;" onclick="ToView()">{{ item }}</a></li> -->
+                    <!-- <li><a style="cursor: pointer;" onclick="ToPop('{{ item }}')">{{ item }}</a></li> -->
+                    <li><a style="cursor: pointer;" onclick="ToView('{{ item }}')">{{ item }}</a></li>
                     {% endfor %}
                 </ul>
                 
-            </div>
-            <div id="popup-box" class="pop-btn">
-                <div class="pop-content">
-                    <image class="bot-btn" src="../static/images/chatbot.png" onclick="ToSearch()"></image>
-                    <image class="view-btn"src="../static/images/file.png" onclick="ToView()"></image>
-                    <a
-                        href="#"
-                        style="
-                            position: absolute;
-                            top: 10px;
-                            right: 10px;
-                            color: #fe0606;
-                            font-size: 30px;
-                            text-decoration: none;
-                        "
-                        >&times;</a
-                    >
-                </div>
             </div>
         </div>
     </div>
@@ -127,26 +109,13 @@
         var searchInputContainer = document.getElementById("search-input-container");
         searchInputContainer.classList.toggle("hidden");
     }
-    // var searchResults = document.querySelector('.search-results ul');
-    // var searchForm = document.getElementById("cover");
-    // if (searchResults.children.length > 0) {
-    //     searchForm.classList.add("hidden");
-    // }
-    // function ToView(){
-    //     window.location.href="/view";
-    // }
     function ToView(itemContent) {
-    window.location.href = "/view?item=" + encodeURIComponent(globalItemContent);
+    window.location.href = "/view?item=" + encodeURIComponent(itemContent);
 }
     function ToSearch() {
         window.location.href = "search";
     }
 
-    function ToPop(itemContent) {
-        const popup = document.getElementById('popup-box');
-        popup.style.display = 'block';
-        globalItemContent = itemContent;
-    }
 
 
     // Perform logout action

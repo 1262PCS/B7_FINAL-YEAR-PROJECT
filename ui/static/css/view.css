@@ -410,5 +410,22 @@
   }
   
   }
+  #popup-box {
+    position: fixed;
+    bottom: 10px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
+}
+
+.pop-content {
+    display: flex;
+    flex-direction: row-reverse; /* Buttons aligned to the right */
+    align-items: flex-end; /* Align buttons to the bottom */
+}
+
+.bot-btn, .view-btn {
+    width: 80px; /* Adjust as needed */
+    height: 80px; /* Adjust as needed */
+    margin-left: 10px; /* Adjust as needed */
+}
   
   

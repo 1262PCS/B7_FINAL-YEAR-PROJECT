@@ -3,7 +3,7 @@ import csv
 
 
 # Specify the path to your CSV file
-file_path = "all_papers.csv"
+file_path = "updated_dataset.csv"
 
 # Read the CSV file into a DataFrame
 df = pd.read_csv(file_path)
@@ -21,7 +21,7 @@ def search_papers(keyword):
 
   
   keyword = keyword.lower()  # Convert keyword to lowercase for case-insensitive search
-  matching_papers = df[df['Paper Title'].str.lower().str.contains(keyword)] 
+  matching_papers = df[df['Title'].str.lower().str.contains(keyword)] 
 #   matching_papers = df[df['Paper Title'].str.contains(keyword)]
   return matching_papers
 
@@ -41,7 +41,7 @@ def display_results(matching_papers):
 # #   print(f"\nSearch Results for '{keyword}' ({num_papers} papers):\n")
   
   # Access paper titles and potentially other columns you want to display
-  paper_titles = matching_papers['Paper Title'].tolist()
+  paper_titles = matching_papers['Title'].tolist()
   list=[]
   for title in paper_titles:
       el=title
