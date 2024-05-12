@@ -1,106 +1,57 @@
+import streamlit as st
 from ctransformers import AutoModelForCausalLM
-import requests
-import re
-import os
-import pandas as pd
-import PyPDF2
-from PyPDF2 import PdfReader
 
-llm = AutoModelForCausalLM.from_pretrained(
-    "zoltanctoth/orca_mini_3B-GGUF", model_file="orca-mini-3b.q4_0.gguf"
-)
+# Load the DialoGPT model
+llm = AutoModelForCausalLM.from_pretrained("zoltanctoth/orca_mini_3B-GGUF", model_file="orca-mini-3b.q4_0.gguf")
 
-def get_prompt(instruction: str) -> str:
+def get_prompt(instruction: str, history: list[str] | None = None) -> str:
     system = "You are an AI assistant that gives helpful answers. You answer the question in a short and concise way."
-    prompt = f"### System:\n{system}\n\n### User:\n{instruction}\n\n### Response:\n"
+    prompt = f"### System:\n{system}\n\n### User:\n"
+    if history is not None:
+        prompt += f"This is the conversation history: {''.join(history)}. Now answer the question: "
+    prompt += f"{instruction}\n\n### Response:\n"
     return prompt
 
-def view_abstract(pdf_link):
-    try:
-        # Disable SSL verification to handle SSL certificate errors
-        response = requests.get(pdf_link, stream=True, verify=False)
+with st.sidebar:
+    st.title('🤗💬 SAMVIDH')
+    st.markdown('''
+    
+    
+ ✨ Features &  How to Use 💡:
 
-        # Check if the request was successful (status code 200)
-        if response.status_code == 200:
-            # Save the PDF content to a file
-            with open('temp_pdf.pdf', 'wb') as file:
-                file.write(response.content)
+- Instant Assistance 💬: Get quick and helpful responses to your research questions.
+- Conversation History 📚: Easily access past queries and answers for reference.
+- Educational Support 🎓: SAMVIDH offers concise answers to enhance your understanding.
+- Enter your query in the text input box labeled "You."
+- SAMVIDH will provide prompt responses to assist you.
+    ''')
 
-            # Extract abstract from the downloaded PDF
-            abstract = extract_abstract('temp_pdf.pdf')
+def main():
+    st.title('🤖 SAMVIDH Chat Interface')
 
-            # Delete the temporary PDF file
-            try:
-                os.remove('temp_pdf.pdf')
-            except FileNotFoundError:
-                pass
+    if 'conversation_history' not in st.session_state:
+        st.session_state.conversation_history = []
+    
+    st.write("Please tell me how can I assist you!")
 
-            if abstract:
-                print("Abstract:")
-                print(abstract)
-        else:
-            print(f"Failed to fetch the PDF from {pdf_link}. Status code: {response.status_code}")
-            return None
-    except requests.exceptions.RequestException as e:
-        print(f"Error occurred while fetching the PDF: {e}")
-
-def extract_abstract(pdf_path):
-    abstract_text = ""
-    with open(pdf_path, "rb") as file:
-        pdf_reader = PyPDF2.PdfReader(file)
-        for page in pdf_reader.pages:
-            text = page.extract_text()
-            abstract_match = re.search(r'\babstract\b', text, re.IGNORECASE)
-            introduction_match = re.search(r'\bintroduction\b', text, re.IGNORECASE)
-            if abstract_match:
-                if introduction_match:
-                    abstract_text += text[abstract_match.end():introduction_match.start()]
-                    break
-                else:
-                    abstract_text += text[abstract_match.end():]
-                    break
-    return abstract_text.strip()
-
-def chat_interface():
-    print("Hi, I am SAMVIDH, I'll be happy to help with your queries! Please choose your requirement:")
-    print("1. General Assistance")
-    print("2. Display Abstract of a Paper from the link provided")
-    print("Type 'exit', 'quit', or 'bye' to end the conversation.")
-
-    while True:
-        user_choice = input("Your choice (1/2): ")
-
-        if user_choice.lower() in ["exit", "quit", "bye"]:
-            print("Chat ended.")
-            break
-
-        if user_choice == "1":
-            general_conversation()
-
-        elif user_choice == "2":
-            pdf_link = input("Enter the link to the PDF for abstract extraction: ")
-            view_abstract(pdf_link)
-        else:
-            print("Invalid choice. Please enter 1 or 2.")
-
-def general_conversation():
-    print("SAMVIDH: Please tell me how can I assist you!")
-
-    while True:
-        user_input = input("You: ")
-        if user_input.lower() in ["exit", "quit", "bye"]:
-            print("SAMVIDH: Moving to main menu!!!!.")
-            break
-
+    user_input = st.text_input("YOU:")
+    if user_input:
         question = user_input
-        prompt = get_prompt(question)
-        answer = ""
-        print("SAMVIDH: ", end='')
-
+        prompt = get_prompt(question, st.session_state.conversation_history)  # Include conversation history in prompt
+        answer = "SAMVIDH: "
         for word in llm(prompt, stream=True):
-            print(word, end="", flush=True)
             answer += word
-        print()
+        st.write(answer)
 
-# Example usage
-# chat_interface()
+        # Add the question and answer to conversation history
+        st.session_state.conversation_history.append(f"{question}\n{answer}")
+
+        # Display previous queries and their answers as separate blocks
+        st.write("\n\n## Previous Conversations:")
+        for idx, entry in enumerate(st.session_state.conversation_history[::-1]):
+            query, response = entry.split("\n")
+            st.write(f"Previous Query {len(st.session_state.conversation_history)-idx}:", query)
+            st.write(f"Previous Answer {len(st.session_state.conversation_history)-idx}:", response)
+
+if __name__ == '__main__':
+    main()

@@ -21,12 +21,17 @@ llm = AutoModelForCausalLM.from_pretrained(
 with st.sidebar:
     st.title('🤗💬 SAMVIDH')
     st.markdown('''
-    ## About
-    This app is an LLM-powered chatbot built using:
-    - [Streamlit](https://streamlit.io/)
-    - [LangChain](https://python.langchain.com/)
-    - [OpenAI](https://platform.openai.com/docs/models) LLM model
-    ''')
+    <div style="text-align: justify;">
+        ## About
+        👋 Hello there! I'm Samvidh, 
+            your paper-specific chatbot! Feel free to type your query below 
+            and click on the 'Get Answer' button to receive tailored assistance 
+            based on the paper you've selected. We're here to help you explore 
+            and understand the fascinating world of research! 📚✨
+    </div><br>
+    ''',unsafe_allow_html=True)
+
+
     st.write('Your Research Guide')
 
 def main():
@@ -41,7 +46,7 @@ def main():
     # print(link)
     pdf_link = st.text_input("Paper link:", value=link)
     # User input: Query
-    query = st.text_area("Ask questions about your PDF file:", height=100)
+    query = st.text_area("Hi friend,please type your query related to paper and press 'Get Answer' button.", height=100)
     
     # Button to process PDF and answer query
     if st.button("Get Answer"):

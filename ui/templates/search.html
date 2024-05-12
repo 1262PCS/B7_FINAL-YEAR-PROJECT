@@ -73,7 +73,13 @@
             </div>
         </div>
     </div>
+    <div id="bot-btn">
+        <span class="hover-text" style="display: none; position: absolute;top: -41px;left: 30%; transform: translateX(-50%); background-color: #ffffff; padding: 5px; border: 1px solid #ccc; border-radius: 5px; white-space: nowrap;">Chat with Samvidh</span>
+        <image src="../static/images/chatbot.png" onclick="redirectToBOT()" onmouseover="showHoverText()" onmouseout="hideHoverText()"></image>
+    </div>
+
 </div>
+
 
 
 
@@ -95,12 +101,23 @@
     }
     function ToView(itemContent) {
     window.location.href = "/view?item=" + encodeURIComponent(itemContent);
-}
+    }
     function ToSearch() {
         window.location.href = "search";
     }
+    function redirectToBOT(link) {
+        var botUrl = "http://localhost:8502/";  // Adjust the URL to match your Flask app's URL
+        var redirectUrl = `${botUrl}`;
+        window.location.href = redirectUrl;
+    }
 
+    function showHoverText() {
+        document.querySelector('.hover-text').style.display = 'block';
+    }
 
+    function hideHoverText() {
+        document.querySelector('.hover-text').style.display = 'none';
+    }
 
     // Perform logout action
     function ToLogin() {

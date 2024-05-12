@@ -597,3 +597,16 @@ body {
   text-align: left; /* Add scrollbar when content exceeds the height */
 }
 /* chatbot */
+#bot-btn {
+  position: fixed;
+  bottom: 20px; 
+  right: 20px; 
+  z-index: 1000;
+  cursor: pointer;
+}
+
+
+#bot-btn img {
+  width: 80px;
+  height: 80px;
+}
