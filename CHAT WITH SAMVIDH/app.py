@@ -31,7 +31,6 @@ with st.sidebar:
 def main():
     st.header("Chat with PDF")
     
-    
     embeddings = None
     model = None
     
@@ -132,8 +131,6 @@ def generate_response(llm, prompt):
     print()
     return response
 
-
-
 def get_prompt(instruction: str, similar_docs: List[str], top_k=3) -> str:
     system = "You are an AI assistant that gives helpful answers. You answer the question in a short and concise way."
     prompt = f"### System:\n{system}\n\n### User:\n{instruction}\n\n### Documents:\n"
@@ -141,8 +138,6 @@ def get_prompt(instruction: str, similar_docs: List[str], top_k=3) -> str:
         prompt += f"- {doc}\n"
     prompt += "\n### Response:\n"
     return prompt
-
-
 
 if __name__ == '__main__':
     main()
