@@ -3,6 +3,7 @@ from flask import Flask, jsonify, render_template, request, redirect, url_for
 from db import create_table, add_user, authenticate_user
 from search import search_papers,display_results
 from view import paper_data_title,paper_data_author,paper_data_citations,paper_data_publisher, paper_pdf_link,view_abstract,paper_community
+from chatbot import get_prompt,view_abstract,extract_abstract,chat_interface,general_conversation
 
 app = Flask(__name__)
 

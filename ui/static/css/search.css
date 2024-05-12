@@ -579,3 +579,21 @@ p{
   height:50%; 
   width: 50%;
 }
+
+
+body {
+  font-family: "Lato", sans-serif;
+  overflow-y: scroll; /* Add scrollbar */
+}
+
+.hidden {
+  display: none; /* Hide the element */
+}
+.search-results {
+  padding-right: 10px;
+  margin-top: 40%;
+  max-height: 800px; /*Increase the maximum height of the container */
+  overflow-y: auto;
+  text-align: left; /* Add scrollbar when content exceeds the height */
+}
+/* chatbot */
