@@ -60,7 +60,7 @@ body {
         <div class="paper">
             <h1 style="text-align: center;">{{result}}</h1>
             <h4 style="text-align: center;">{{authors}}</h4>
-            <h4 style="text-align: left;">Publisher:{{Publisher}}</h4>
+            <!-- <h4 style="text-align: left;">Year:{{year}}</h4> -->
             <p style="text-align: justify;"><b>Abstract</b> </br>{{abstract}}</p>
         </div>
         <div class="community">
@@ -85,8 +85,11 @@ body {
     </div>
     <div id="popup-box" class="pop-btn">
         <div class="pop-content">
-            <image class="bot-btn" src="../static/images/chatbot.png" onclick="redirectToBOT('{{link}}')"></image>
-            <image class="view-btn" src="../static/images/file.png" onclick="redirectToPDF('{{link}}')"></image>
+            <!-- <image class="bot-btn" src="../static/images/chatbot.png" onclick="redirectToBOT('{{link}}')"title="Chat with PDF"></image></image> -->
+            <span class="hover-text" style="display: none; position: absolute;top: -41px;left: 64%; transform: translateX(-50%); background-color: #ffffff; padding: 5px; border: 1px solid #ccc; border-radius: 5px; white-space: nowrap;">Chat with Samvidh</span>
+            <image class="bot-btn" src="../static/images/chatbot.png" onclick="redirectToBOT('{{link}}')" onmouseover="showHoverText()" onmouseout="hideHoverText()"></image>
+            <span class="hover-text-pdf" style="display: none; position: absolute;top: -41px;left: -7%; transform: translateX(-50%); background-color: #ffffff; padding: 5px; border: 1px solid #ccc; border-radius: 5px; white-space: nowrap;">View Research Paper</span>
+            <image class="view-btn" src="../static/images/file.png" onclick="redirectToPDF('{{link}}')"onmouseover="showHoverTextPDF()" onmouseout="hideHoverTextPDF()"></image>
         </div>
     </div>
 
@@ -103,7 +106,20 @@ body {
         var redirectUrl = `${botUrl}?link=${encodeURIComponent(link)}`;
         window.location.href = redirectUrl;
     }
+    function showHoverText() {
+        document.querySelector('.hover-text').style.display = 'block';
+    }
 
+    function hideHoverText() {
+        document.querySelector('.hover-text').style.display = 'none';
+    }
+    function showHoverTextPDF() {
+        document.querySelector('.hover-text-pdf').style.display = 'block';
+    }
+
+    function hideHoverTextPDF() {
+        document.querySelector('.hover-text-pdf').style.display = 'none';
+    }
 </script>
 
 
