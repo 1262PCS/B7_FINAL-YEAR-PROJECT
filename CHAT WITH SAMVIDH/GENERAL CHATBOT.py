@@ -1,8 +1,8 @@
+import streamlit as st
 from ctransformers import AutoModelForCausalLM
 
-llm = AutoModelForCausalLM.from_pretrained(
-    "zoltanctoth/orca_mini_3B-GGUF", model_file="orca-mini-3b.q4_0.gguf"
-)
+# Load the DialoGPT model
+llm = AutoModelForCausalLM.from_pretrained("zoltanctoth/orca_mini_3B-GGUF", model_file="orca-mini-3b.q4_0.gguf")
 
 def get_prompt(instruction: str, history: list[str] | None = None) -> str:
     system = "You are an AI assistant that gives helpful answers. You answer the question in a short and concise way."
@@ -12,31 +12,53 @@ def get_prompt(instruction: str, history: list[str] | None = None) -> str:
     prompt += f"{instruction}\n\n### Response:\n"
     return prompt
 
-def chat_interface():
-    print("Hi, I am SAMVIDH, I'll be happy to help with your queries:")
-    print("SAMVIDH: Please tell me how can I assist you!")
+with st.sidebar:
+    st.title('🤗💬 SAMVIDH')
+    st.markdown('''
+    
+    
+ ✨ Features &  How to Use 💡:
 
-    history = []  # Initialize conversation history
+- Instant Assistance 💬: Get quick and helpful responses to your research questions.
+- Conversation History 📚: Easily access past queries and answers for reference.
+- Educational Support 🎓: SAMVIDH offers concise answers to enhance your understanding.
+- Enter your query in the text input box labeled "You."
+- SAMVIDH will provide prompt responses to assist you.
 
-    while True:
-        user_input = input("You: ")
-        if user_input.lower() in ["exit", "quit", "bye"]:
-            print("SAMVIDH: Exiting!!!!.")
-            break
 
+    ''')
+    
+
+def main():
+    st.title('🤖 SAMVIDH Chat Interface')
+
+    if 'conversation_history' not in st.session_state:
+        st.session_state.conversation_history = []
+
+    
+    st.write("Please tell me how can I assist you!")
+
+    user_input = st.text_input("YOU:")
+    if user_input:
         question = user_input
-        prompt = get_prompt(question, history)  # Include conversation history in prompt
-        answer = ""
-        print("SAMVIDH: ", end='')
+        prompt = get_prompt(question, st.session_state.conversation_history)  # Include conversation history in prompt
+        answer = "SAMVIDH: "
 
         for word in llm(prompt, stream=True):
-            print(word, end="", flush=True)
             answer += word
-        print()
 
-        # Add the answer to conversation history
-        history.append(answer)
+        st.write(answer)
 
-# Example usage
-chat_interface()
+        # Add the question and answer to conversation history
+        st.session_state.conversation_history.append(f"{question}\n{answer}")
+
+        # Display previous queries and their answers as separate blocks
+        st.write("\n\n## Previous Conversations:")
+        for idx, entry in enumerate(st.session_state.conversation_history[::-1]):
+            query, response = entry.split("\n")
+            st.write(f"Previous Query {len(st.session_state.conversation_history)-idx}:", query)
+            st.write(f"Previous Answer {len(st.session_state.conversation_history)-idx}:", response)
+
+if __name__ == '__main__':
+    main()
 
