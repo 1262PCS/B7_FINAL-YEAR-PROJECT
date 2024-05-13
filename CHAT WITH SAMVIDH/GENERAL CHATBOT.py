@@ -1,7 +1,7 @@
 import streamlit as st
 from ctransformers import AutoModelForCausalLM
 
-# Load the DialoGPT model
+
 llm = AutoModelForCausalLM.from_pretrained("zoltanctoth/orca_mini_3B-GGUF", model_file="orca-mini-3b.q4_0.gguf")
 
 def get_prompt(instruction: str, history: list[str] | None = None) -> str:
