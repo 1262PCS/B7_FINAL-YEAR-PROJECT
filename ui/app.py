@@ -3,7 +3,7 @@ from flask import Flask, jsonify, render_template, request, redirect, url_for
 from db import create_table, add_user, authenticate_user
 from search import search_papers,display_results
 from view import paper_data_title,paper_data_author,paper_data_citations,paper_data_publisher, paper_pdf_link,view_abstract,paper_community
-
+from chatbot import get_prompt,view_abstract,extract_abstract,chat_interface,general_conversation
 
 app = Flask(__name__)
 
@@ -67,11 +67,12 @@ def view():
     title = paper_data_title(item_content)
     authors=paper_data_author(item_content)
     citations = paper_data_citations(item_content)
-    Publisher = paper_data_publisher(item_content)
+    Journal = paper_data_Journal(item_content)
     link = paper_pdf_link(item_content)
     abstract = view_abstract(item_content)
     community = paper_community(item_content)
-    return render_template('view.html',result = title, authors =authors,citations =citations, Publisher=Publisher, link = link,abstract = abstract, community = community)
+    year = paper_year(item_content)
+    return render_template('view.html',result = title, authors =authors,citations =citations, Journal=Journal, link = link,abstract = abstract, community = community,year = year)
 
 @app.route('/page1')
 def page():

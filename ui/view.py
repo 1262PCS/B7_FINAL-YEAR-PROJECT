@@ -20,9 +20,9 @@ def paper_data_title(name):
 def paper_data_author(name):
     author = data[data['Title'] == name]['Author'].iloc[0]
     return author
-def paper_data_publisher(name):
-    Publisher = data[data['Title'] == name]['Publisher'].iloc[0]
-    return Publisher
+def paper_data_Journal(name):
+    Journal = data[data['Title'] == name]['Journal'].iloc[0]
+    return Journal
 def paper_data_citations(name):
     input_node_id = data[data['Title'] == name]['node_id'].iloc[0]
     directed_graph = graph.to_directed()
@@ -39,7 +39,9 @@ def paper_community(name):
     community_id = data[data['node_id'] == node_id]['CommunityID'].iloc[0]
     papers_in_community = data[data['CommunityID'] == community_id]['Title'].tolist()
     return papers_in_community
-    
+def paper_year(name):
+    year = data[data['Title']==name]['Year'].iloc[0]
+    return year
 def view_abstract(name):
     pdf_link = data[data['Title'] == name]['Goto PDF'].iloc[0]
     try:
