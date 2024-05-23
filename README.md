@@ -1,6 +1,6 @@
 # B7_FINAL-YEAR-PROJECT
 
-The web app code can be found in ui folder.<br>
+The web app code can be found in ui folder.<br><br>
 You can run the application by running app.py file<br>
 In terminal run:<br>
 <pre>python app.py</pre>
