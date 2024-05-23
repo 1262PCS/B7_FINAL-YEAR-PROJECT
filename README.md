@@ -9,10 +9,9 @@ In terminal run:<br>
 <br>
 Simultaneously the chat.py and chatbot.py should be running to get the api calls to the chatbot interfaces.<br>
 In a new terminal run:<br>
-'''
-streamlit run chat.py
-'''
+<pre>streamlit run chat.py</pre>
+
+
 In another terminal run:<br>
-'''
-streamlit run chatbot.py
-'''
+<pre>streamlit run chatbot.py</pre>
+
